@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Google Maps JavaScript API Testing Example</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDg4uqxfdEpmHwxRhJyG211cX9KdMcb194"></script>
+    <script>
+        //value of lat n long
+        var latitude = '';
+        var longitude = '';
+
+      function initMap() {
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 10,
+        });
+        
+        let marker;
+        
+        // Get user's current location coordinates
+        function getLocation() {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+              (position) => {
+                const userLocation = {
+                  lat: position.coords.latitude,
+                  lng: position.coords.longitude,
+                };
+                map.setCenter(userLocation);
+              },
+              () => {
+                console.log("Error: The Geolocation service failed.");
+              }
+            );
+          } else {
+            console.log("Error: Your browser doesn't support geolocation.");
+          }
+        }
+        
+        getLocation();
+        
+        // Add event listener for map click
+        map.addListener("click", (event) => {
+          // Check if a marker already exists
+          if (marker && marker.setMap) {
+            marker.setMap(null);
+          }
+          
+          // Place a new marker at the clicked location
+          marker = new google.maps.Marker({
+            position: event.latLng,
+            map: map,
+          });
+          
+          document.getElementById("add").style.visibility="visible";
+          document.getElementById("delete").style.visibility="visible";
+
+          latitude = event.latLng.lat();
+          longitude = event.latLng.lng();
+          
+          // Update location element with new coordinates
+          document.getElementById("location").innerHTML = `Latitude: ${latitude}, Longitude: ${longitude}`;
+        });
+      }
+      
+      window.addEventListener("load", initMap);
+    </script>
+  </head>
+  <body>
+    <h1 style="text-align: center;">Search for Weather and Nearby Restaurant</h1>
+    <div id="map" style="height: 400px;"></div>
+    <p id="location"></p>
+    <button id="add" style="visibility: hidden;">Add</button>
+    <button id="delete" style="visibility: hidden;">Delete</button>
+  </body>
+</html>
