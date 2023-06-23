@@ -1,6 +1,10 @@
+
 <!DOCTYPE html>
 <html>
   <head>
+
+  
+
     <title>Google Maps JavaScript API Testing Example</title>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDg4uqxfdEpmHwxRhJyG211cX9KdMcb194"></script>
     <script>
@@ -50,25 +54,62 @@
             map: map,
           });
           
-          document.getElementById("add").style.visibility="visible";
-          document.getElementById("delete").style.visibility="visible";
+          document.getElementById("search").style.visibility="visible";
+
 
           latitude = event.latLng.lat();
           longitude = event.latLng.lng();
           
-          // Update location element with new coordinates
-          document.getElementById("location").innerHTML = `Latitude: ${latitude}, Longitude: ${longitude}`;
+          // Update element with new coordinates
+          document.getElementById("form_lat").value = `${latitude}`;
+          document.getElementById("form_lon").value = `${longitude}`;
+
+          //update form action
+          document.getElementById("searchWeather").action = `http://localhost:5000/searchWeather?lat=${latitude}&lon=${longitude}`;
+
+          
+          
+
+
+
         });
       }
       
       window.addEventListener("load", initMap);
+
+
+
+      
+
+
     </script>
   </head>
   <body>
     <h1 style="text-align: center;">Search for Weather and Nearby Restaurant</h1>
     <div id="map" style="height: 400px;"></div>
-    <p id="location"></p>
-    <button id="add" style="visibility: hidden;">Add</button>
-    <button id="delete" style="visibility: hidden;">Delete</button>
+
+
+    
+
+
+    <div style="display: flex; justify-content: center;">
+      <form id="searchWeather" method="get">
+        Choose your action:
+        <br><br>
+        <label for="latitude">Latitude:</label>
+        <input type="text" id="form_lat" name="lat"><br><br>
+        <label for="longitude">Longitude:</label>
+        <input type="text" id="form_lon" name="lon"><br><br>
+        <button type="submit" value="submit" id="search" style="visibility: hidden;">Search</button>
+      </form>
+    </div>
+    
+
+  
+
+    
   </body>
 </html>
+
+
+    
