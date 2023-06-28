@@ -144,16 +144,16 @@ app.post('/addWeather', (req, res) => {
 
 
 //delete all 
-app.get('/deleteAll', (req ,res) => {
+app.delete('/deleteAll', (req ,res) => {
     connect.deleteMany().then(res=>{
         console.log("Success deleting all");
     })
 
-    res.send('<h1>Delete All Success</h1>');
+    res.send("Delete All Success");
 });
 
 //delete by city name
-app.get('/delete', (req ,res) => {
+app.delete('/delete', (req ,res) => {
   var city = req.query.city;
   
   connect.deleteOne({City : city }).then(res=>{
@@ -169,7 +169,8 @@ app.get('/delete', (req ,res) => {
 app.get('/update', (req ,res) => {
 
   var city = req.query.city;
-  
+  var lat = req.query.lat;
+  var lon = req.query.lon;
 
   const weather = `https://api.weatherbit.io/v2.0/current?key=b70306e0571a4d3e8c95351dfc35292a&lat=${lat}&lon=${lon}`;
 
