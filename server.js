@@ -141,6 +141,7 @@ app.post('/addWeather', (req, res) => {
       "temp" : req.body.temp,
       "weather" : req.body.weather,
       "restaurant" : req.body.restaurant,
+      "address" : req.body.address
     };
     
     weatherValue = new connect ({
@@ -150,6 +151,7 @@ app.post('/addWeather', (req, res) => {
       Temp : weather.temp,
       Weather : weather.weather,
       Restaurant : weather.restaurant,
+      Address : weather.address
     });
   
   
