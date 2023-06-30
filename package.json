@@ -5,6 +5,7 @@
     "express": "^4.18.2",
     "mongoose": "^7.3.0",
     "nodemon": "^2.0.22",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "yelp-fusion": "^3.0.0"
   }
 }
