@@ -19,6 +19,7 @@ const weatherSchema = new mongoose.Schema({
     Temp : {type: String},
     Weather : {type: String},
     Restaurant : {type: String},
+    Address : {type: String},
 });
 
 
