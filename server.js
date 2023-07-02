@@ -2,9 +2,16 @@
 const axios = require('axios');
 const express = require('express');
 const path=require('path');
-const connect = require('./connect');
+
 const yelp = require('yelp-fusion');
 //npm install yelp-fusion
+
+
+const mongoose = require('mongoose');
+
+
+
+
 
 const app = express();
 
@@ -238,4 +245,33 @@ app.get('/update', (req ,res) => {
 });
 
 
-app.listen(5000);
+
+const db = "mongodb+srv://kailun:kailun@webapi.ynqnsvg.mongodb.net/6003CEM?retryWrites=true&w=majority";
+
+mongoose.connect(db).then (()=>{
+    console.log("Connected to database");
+    app.listen(5000);
+})
+
+.catch(()=>{
+    console.log("Can't connect to database");
+
+})
+
+const weatherSchema = new mongoose.Schema({
+    Longitude :{type: String},
+    Latitude : {type: String},
+    City : {type: String},
+    Temp : {type: String},
+    Weather : {type: String},
+    Restaurant : {type: String},
+    Address : {type: String}
+});
+
+
+
+
+
+const connect = mongoose.model('weatherLocation',weatherSchema);
+
+
