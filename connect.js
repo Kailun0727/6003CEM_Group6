@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const db = "mongodb+srv://kailun:kailun@webapi.ynqnsvg.mongodb.net/6003CEM?retryWrites=true&w=majority";
+const db = "mongodb+srv://kailun:kailun@webapi.ynqnsvg.mongodb.net/6003CEM";
 
 mongoose.connect(db).then (()=>{
     console.log("Connected to database");
